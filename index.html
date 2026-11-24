@@ -130,7 +130,7 @@ const szenarien = [
       {t:"www.deine-bank.de/login-pruefen", v:true, z:"http://deine-bank.de.konto-check.net/login",
        e:"Der Text sieht echt aus. Das wahre Ziel endet aber auf konto-check.net. Entscheidend ist der Teil direkt vor dem ersten „/“, nicht der Anfang."},
       {t:"Geben Sie dort Ihre PIN und eine TAN ein.", v:true, e:"Eine Bank fragt NIE per Mail nach PIN oder TAN."},
-      {t:"Mit freundlichen Grüßen, Ihr Sicherheitsteam", v:false, e:"Eine Grußformel sagt nichts aus. Betrüger kopieren sie leicht."}
+      {t:"Mit freundlichen Grüßen, Deine Bank", v:false, e:"Eine Grußformel sagt nichts aus. Betrüger kopieren sie leicht."}
     ],
     fazit:"Fake: falsche Domain, Druck, Link zu einer fremden Seite und Abfrage von PIN/TAN. Richtig: Mail löschen oder melden, bei Zweifeln die Bank selbst anrufen."
   },
@@ -382,7 +382,7 @@ function ende(){
     <div class="banner ok">⭐ ${punkte} von ${max} Punkten (${proz} %)</div>
     <p>${urteil}</p>
     <div class="card"><b>Merke dir:</b>
-      <p>🔒 Banken fragen <b>nie</b> nach PIN, Passwort oder TAN, weder per Mail, SMS noch Telefon.<br>
+      <p>🔒 Gib <b>niemals</b> PIN, Passwort oder TAN weiter – auch nicht, wenn sich jemand am <b>Telefon, per Mail, oder SMS/WhatsApp</b>als Mitarbeiter einer Bank ausgibt.<br>
       ⏱️ Zeitdruck und Drohungen sind ein Alarmsignal.<br>
       🔗 Links nicht antippen. Öffne dein Online-Banking oder deine Banking-App immer selbst, nie über einen Link.<br>
       📞 Unsicher? Leg auf und ruf die Bank unter der bekannten Nummer zurück.<br>
