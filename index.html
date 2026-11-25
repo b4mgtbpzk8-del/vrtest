@@ -479,7 +479,7 @@ function start(){
   const dreiFakes = mischen(fakeSzenarien).slice(0, 3);
   const zweiEchte = mischen(echteSzenarien).slice(0, 2);
   
-  liste = mischen(szenarien).slice(0, 5); 
+  liste = mischen([...dreiFakes, ...zweiEchte]);
   nr = 0; punkte = 0;
   app.innerHTML = `
     <h1>🎣 Echt oder Fake?</h1>
