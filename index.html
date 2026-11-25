@@ -245,6 +245,211 @@ const szenarien = [
     ],
     fazit:"Fake (Quishing): Der Absender wirkt echt, aber die anderen Warnzeichen verraten die Mail. Nie QR-Codes aus unerwarteten Mails scannen."
   }
+   /* 11 – FAKE-WHATSAPP: „Hallo Mama“, neue Nummer und dringende Überweisung */
+  {
+    typ:"sms", phishing:true, titel:"💬 WhatsApp-Nachricht",
+    kopf:[
+      {l:"Absender", t:"+49 157 48392017", v:true,
+       e:"Die Nummer ist unbekannt. Eine neue Nummer allein beweist noch keinen Betrug, aber du solltest sie über den alten, gespeicherten Kontakt prüfen."}
+    ],
+    koerper:[
+      {t:"Hallo Mama, mein Handy ist kaputt und ich habe eine neue Nummer. Bitte speicher sie sofort ein ❤️", v:true,
+       e:"Diese Einleitung ist typisch für Messenger-Betrug: Eine unbekannte Nummer behauptet, ein Kind oder Angehöriger zu sein."},
+      {t:"Ich kann gerade nicht telefonieren, weil mein Mikrofon kaputt ist.", v:true,
+       e:"Der Betrüger verhindert so, dass du die Person durch einen Anruf überprüfst."},
+      {t:"Kannst du mir bitte schnell 486,70 € auf dieses Konto überweisen? Ich muss heute noch eine Rechnung bezahlen.", v:true,
+       e:"Geldforderung plus Zeitdruck. Überweise niemals, bevor du die Person über die bekannte alte Nummer erreicht hast."},
+      {t:"IBAN: DE12 3456 7890 1234 5678 90 · Empfänger: M. Krüger", v:true,
+       e:"Die Überweisung soll an eine fremde Person gehen – nicht zwingend an den angeblichen Angehörigen."},
+      {t:"Bitte sag Papa nichts, ich erkläre es dir später.", v:true,
+       e:"Geheimhaltung soll verhindern, dass du Rücksprache hältst. Das ist ein deutliches Warnsignal."}
+    ],
+    fazit:"Fake: unbekannte neue Nummer, keine telefonische Prüfung möglich, Zeitdruck, fremdes Konto und Geheimhaltung. Richtig: alte Nummer anrufen oder die Person persönlich fragen."
+  },
+
+  /* 12 – ECHTE SMS: Kartenabbuchung in der App prüfen */
+  {
+    typ:"sms", phishing:false, titel:"💬 SMS auf dem Handy",
+    kopf:[
+      {l:"Absender", t:"Deine Bank", v:false,
+       e:"Die Nachricht kommt im bekannten Verlauf der Banknachrichten. Trotzdem sollte man immer auch auf den Inhalt achten."}
+    ],
+    koerper:[
+      {t:"Hinweis: Ihre Debitkarte wurde heute um 14:32 Uhr mit 18,90 € belastet.", v:false,
+       e:"Eine neutrale Information über eine Kartenumsatz-Benachrichtigung ist plausibel."},
+      {t:"Details sehen Sie in Ihrer Banking-App oder im Online-Banking.", v:false,
+       e:"Die Nachricht enthält keinen Link und fordert keine Zugangsdaten an."},
+      {t:"Falls Ihnen der Umsatz unbekannt ist, nutzen Sie bitte die bekannte Servicenummer auf Ihrer Karte.", v:false,
+       e:"Ein sicherer Hinweis: selbst die bekannte Nummer nutzen statt einen Link anzutippen oder auf eine Nachricht zu antworten."}
+    ],
+    fazit:"Echt: sachliche Information, kein Link, keine TAN- oder PIN-Abfrage. Prüfe den Umsatz dennoch selbst in deiner Banking-App."
+  },
+
+  /* 13 – FAKE-SMS: angebliche Kartensperre mit Link */
+  {
+    typ:"sms", phishing:true, titel:"💬 SMS auf dem Handy",
+    kopf:[
+      {l:"Absender", t:"Karten-Sicherheit", v:true,
+       e:"Ein frei gewählter Absendername ist kein Beweis dafür, dass die Nachricht wirklich von deiner Bank kommt."}
+    ],
+    koerper:[
+      {t:"Ihre Karte wurde wegen verdächtiger Zahlungen vorläufig gesperrt.", v:true,
+       e:"Die Nachricht erzeugt Angst und Handlungsdruck."},
+      {t:"Entsperren Sie Ihre Karte innerhalb von 30 Minuten, sonst wird sie dauerhaft deaktiviert.", v:true,
+       e:"Eine kurze Frist ist ein typisches Druckmittel."},
+      {t:"https://deine-bank-kartenservice.com/entsperren", v:true,
+       z:"https://deine-bank-kartenservice.com/entsperren",
+       e:"Die echte Bankdomain wäre deine-bank.de. Hier endet die Adresse auf deine-bank-kartenservice.com."},
+      {t:"Zur Bestätigung benötigen wir Ihre Kartennummer und Ihre PIN.", v:true,
+       e:"Die PIN darf niemals abgefragt oder weitergegeben werden."}
+    ],
+    fazit:"Fake: Panikmache, kurze Frist, falsche Domain und PIN-Abfrage. Richtig: Banking-App öffnen oder die Nummer auf der Karte anrufen."
+  },
+
+  /* 14 – FAKE-ANRUF: angeblicher technischer Support */
+  {
+    typ:"call", phishing:true, titel:"📞 Anruf auf dem Handy",
+    kopf:[
+      {l:"Anrufer-Anzeige", t:"+49 30 88201944", v:true,
+       e:"Eine deutsche Nummer kann echt aussehen, sagt aber nichts über die Identität des Anrufers aus."}
+    ],
+    koerper:[
+      {t:"Guten Tag, hier ist der technische Sicherheitsservice Ihrer Bank. Ihr Online-Banking wurde möglicherweise gehackt.", v:true,
+       e:"Der Anrufer behauptet ein Sicherheitsproblem, um Angst zu erzeugen."},
+      {t:"Öffnen Sie bitte sofort Ihre Banking-App. Ich führe Sie Schritt für Schritt durch die Absicherung.", v:true,
+       e:"Ein Fremder soll Einfluss auf deine App und mögliche Freigaben bekommen."},
+      {t:"Sie erhalten gleich eine pushTAN. Bestätigen Sie diese bitte, damit wir Ihr Konto schützen können.", v:true,
+       e:"Eine TAN oder App-Freigabe darfst du nur bestätigen, wenn du den angezeigten Auftrag selbst geprüft und veranlasst hast."},
+      {t:"Bleiben Sie unbedingt in der Leitung, sonst kann der Schutz nicht abgeschlossen werden.", v:true,
+       e:"Druck und die Forderung, nicht aufzulegen, sind typische Warnzeichen."}
+    ],
+    fazit:"Fake (Vishing): Unaufgeforderter Sicherheitsanruf, Aufforderung zur TAN-Freigabe und Druck. Richtig: auflegen und selbst bei der Bank anrufen."
+  },
+
+  /* 15 – ECHTE MAIL: Hinweis auf geänderte Kontaktdaten */
+  {
+    typ:"mail", phishing:false, titel:"📧 E-Mail",
+    kopf:[
+      {l:"Von", t:"Deine Bank &lt;service@deine-bank.de&gt;", v:false,
+       e:"Die Absenderdomain entspricht der offiziellen Domain."},
+      {l:"Betreff", t:"Bestätigung: Ihre E-Mail-Adresse wurde geändert", v:false,
+       e:"Ein sachlicher Betreff ohne Drohung oder Gewinnversprechen."}
+    ],
+    koerper:[
+      {t:"Guten Tag Frau Schneider,", v:false,
+       e:"Die Nachricht spricht dich persönlich an."},
+      {t:"wie von Ihnen heute in der Banking-App beauftragt, wurde Ihre E-Mail-Adresse geändert.", v:false,
+       e:"Die Änderung passt zu einer Handlung, die du selbst vorgenommen hast."},
+      {t:"Sie müssen nichts weiter tun.", v:false,
+       e:"Es wird keine Aktion, keine PIN und keine TAN verlangt."},
+      {t:"Falls Sie diese Änderung nicht selbst vorgenommen haben, kontaktieren Sie uns bitte über die bekannte Servicenummer oder in Ihrer Banking-App.", v:false,
+       e:"Die Nachricht verweist auf sichere, bekannte Kontaktwege und enthält keinen Link."}
+    ],
+    fazit:"Echt, wenn du die Änderung selbst vorgenommen hast. Wenn nicht: nicht auf die Mail antworten, sondern Bank über App oder bekannte Nummer kontaktieren."
+  },
+
+  /* 16 – FAKE-MAIL: angebliche Rückerstattung */
+  {
+    typ:"mail", phishing:true, titel:"📧 E-Mail",
+    kopf:[
+      {l:"Von", t:"Deine Bank Rückerstattung &lt;refund@deine-bank-rueckzahlung.net&gt;", v:true,
+       e:"Die Adresse endet auf deine-bank-rueckzahlung.net – nicht auf deine-bank.de."},
+      {l:"Betreff", t:"Sie erhalten 74,32 € zurück – jetzt bestätigen", v:true,
+       e:"Eine unerwartete Rückzahlung soll neugierig machen und zu schnellem Handeln verleiten."}
+    ],
+    koerper:[
+      {t:"Guten Tag, aufgrund eines Rechenfehlers steht Ihnen eine Rückerstattung zu.", v:true,
+       e:"Es fehlen nachvollziehbare Details: Welche Buchung? Wann? Warum?"}, 
+      {t:"Rückzahlung anfordern", v:true,
+       z:"https://deine-bank-rueckzahlung.net/auszahlung",
+       e:"Der Link führt auf eine fremde Domain."},
+      {t:"Für die Auszahlung benötigen wir Ihre vollständige Kartennummer, Prüfziffer und Online-Banking-PIN.", v:true,
+       e:"Für eine Rückzahlung benötigt eine Bank weder PIN noch Kartenprüfziffer."},
+      {t:"Antrag nur heute gültig.", v:true,
+       e:"Die Frist soll dich unter Druck setzen."}
+    ],
+    fazit:"Fake: fremde Domain, überraschende Rückzahlung, Datenabfrage und Zeitdruck. Gib niemals PIN oder CVV für eine angebliche Erstattung an."
+  },
+
+  /* 17 – FAKE-MESSENGER: Freund bittet um TAN */
+  {
+    typ:"sms", phishing:true, titel:"💬 Messenger-Nachricht",
+    kopf:[
+      {l:"Absender", t:"Leon (Profilbild vorhanden)", v:true,
+       e:"Profilbild und Name können kopiert oder ein Konto übernommen worden sein. Das ist kein Identitätsbeweis."}
+    ],
+    koerper:[
+      {t:"Hey, ich komme gerade nicht in meine Banking-App. Kannst du mir kurz helfen?", v:true,
+       e:"Die Bitte wirkt freundlich und harmlos, bereitet aber eine gefährliche Forderung vor."},
+      {t:"Ich habe aus Versehen deine Nummer bei meiner Bank hinterlegt. Du bekommst gleich eine TAN – schick sie mir bitte schnell.", v:true,
+       e:"Eine TAN ist persönlich und darf niemals an andere Personen weitergegeben werden."},
+      {t:"Ist echt dringend, ich muss eine Rechnung sofort bezahlen.", v:true,
+       e:"Zeitdruck soll verhindern, dass du kritisch nachfragst oder Leon über einen anderen Weg kontaktierst."}
+    ],
+    fazit:"Fake oder kompromittiertes Konto: Eine TAN gehört nur dir. Richtig: keine TAN senden und Leon über einen bekannten zweiten Weg anrufen."
+  },
+
+  /* 18 – ECHTER ANRUF: Termin in der Filiale */
+  {
+    typ:"call", phishing:false, titel:"📞 Anruf auf dem Handy",
+    kopf:[
+      {l:"Anrufer-Anzeige", t:"Deine Bank (gespeicherte Filialnummer)", v:false,
+       e:"Die Nummer entspricht der von dir gespeicherten Filialnummer. Trotzdem ist der Gesprächsinhalt entscheidend."}
+    ],
+    koerper:[
+      {t:"Guten Tag Frau Schneider, Sie haben für morgen um 15 Uhr einen Beratungstermin in unserer Filiale gebucht.", v:false,
+       e:"Der Anruf bezieht sich auf einen Termin, den du selbst vereinbart hast."},
+      {t:"Wir möchten nur wissen, ob Sie den Termin wahrnehmen können.", v:false,
+       e:"Es geht lediglich um eine Terminbestätigung, nicht um Bankzugang oder Geld."},
+      {t:"Für die Terminbestätigung benötigen wir keine PIN, keine TAN und keine Zugangsdaten.", v:false,
+       e:"Ein echter Ansprechpartner stellt klar, dass keine geheimen Daten erforderlich sind."}
+    ],
+    fazit:"Echt, wenn du den Termin selbst gebucht hast. Es gibt keinen Druck, keinen Link und keine Abfrage von Geheimdaten."
+  },
+
+  /* 19 – FAKE-MAIL: angeblicher sicherer Dokumentenaustausch */
+  {
+    typ:"mail", phishing:true, titel:"📧 E-Mail",
+    kopf:[
+      {l:"Von", t:"Deine Bank Dokumentencenter &lt;postfach@deine-bank-sicher.de&gt;", v:true,
+       e:"Die Domain sieht vertrauenswürdig aus, ist aber nicht die offizielle Domain deine-bank.de."},
+      {l:"Betreff", t:"Neues vertrauliches Dokument in Ihrem Postfach", v:true,
+       e:"Allein der Betreff könnte echt wirken. In Verbindung mit dem Link wird es verdächtig."}
+    ],
+    koerper:[
+      {t:"Für Sie liegt ein neues Dokument bereit.", v:false,
+       e:"Diese Aussage ist für sich allein nicht eindeutig."},
+      {t:"Dokument online öffnen", v:true,
+       z:"https://deine-bank-sicher.de/login",
+       e:"Das Ziel gehört nicht zur offiziellen Bankdomain."},
+      {t:"Bitte melden Sie sich mit Ihrem VR-NetKey und Ihrer PIN an.", v:true,
+       e:"Zugangsdaten sollte man nicht über einen Link aus einer unerwarteten Mail eingeben."},
+      {t:"Das Dokument wird aus Datenschutzgründen nach 24 Stunden gelöscht.", v:true,
+       e:"Die angebliche Frist erzeugt unnötigen Zeitdruck."}
+    ],
+    fazit:"Fake: ähnlich klingende, aber falsche Domain, Login-Aufforderung per Link und Zeitdruck. Öffne das Postfach lieber direkt über deine Banking-App."
+  },
+
+  /* 20 – FAKE-SMS: angebliche TAN-Synchronisierung */
+  {
+    typ:"sms", phishing:true, titel:"💬 SMS auf dem Handy",
+    kopf:[
+      {l:"Absender", t:"DeineBank-TAN", v:true,
+       e:"Der Absendername sieht ähnlich aus, ist aber nicht unbedingt der bekannte Absenderverlauf deiner Bank."}
+    ],
+    koerper:[
+      {t:"Ihre TAN-App muss wegen eines Sicherheitsupdates neu synchronisiert werden.", v:true,
+       e:"Ein unaufgefordertes angebliches Sicherheitsupdate ist verdächtig."},
+      {t:"Öffnen Sie innerhalb von 15 Minuten den folgenden Link, um Ihre pushTAN-App zu reaktivieren:", v:true,
+       e:"Kurze Fristen sind ein klassisches Druckmittel."},
+      {t:"https://deine-bank-tan.app/sync", v:true,
+       z:"https://deine-bank-tan.app/sync",
+       e:"Die echte Domain ist deine-bank.de, nicht deine-bank-tan.app."},
+      {t:"Halten Sie Ihre Aktivierungsdaten und Ihre PIN bereit.", v:true,
+       e:"PIN und Aktivierungsdaten gehören nicht in eine Webseite, die über einen SMS-Link geöffnet wurde."}
+    ],
+    fazit:"Fake (Smishing): erfundenes Update, Zeitdruck, falsche Domain und PIN-Aufforderung. Öffne die echte Banking-App selbst und prüfe dort Hinweise."
+  }
 ];
 
 /* 
@@ -267,6 +472,13 @@ function alleStellen(z){ return z.kopf.concat(z.koerper); }
 
 /*Startseite*/
 function start(){
+  
+  const fakeSzenarien = szenarien.filter(s => s.phishing === true);
+  const echteSzenarien = szenarien.filter(s => s.phishing === false);
+
+  const dreiFakes = mischen(fakeSzenarien).slice(0, 3);
+  const zweiEchte = mischen(echteSzenarien).slice(0, 2);
+  
   liste = mischen(szenarien).slice(0, 5); 
   nr = 0; punkte = 0;
   app.innerHTML = `
