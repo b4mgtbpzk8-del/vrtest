@@ -267,7 +267,8 @@ function alleStellen(z){ return z.kopf.concat(z.koerper); }
 
 /*Startseite*/
 function start(){
-  liste = mischen(szenarien); nr = 0; punkte = 0;
+  liste = mischen(szenarien).slice(0, 5); 
+  nr = 0; punkte = 0;
   app.innerHTML = `
     <h1>🎣 Echt oder Fake?</h1>
     <p>Betrüger versuchen, an dein Geld oder deine Bankdaten zu kommen. Teste, ob du sie erkennst.</p>
@@ -282,7 +283,7 @@ function start(){
     <div class="card">
       <b>So geht’s:</b>
       <p>1. Lies die Nachricht.<br>2. <b>Tippe auf Stellen, die dir verdächtig vorkommen.</b> Sie leuchten orange.<br>3. Entscheide unten: <b>Echt</b> oder <b>Fake</b>.<br>4. Danach siehst du, was stimmt, und bekommst jede Stelle erklärt.</p>
-      <p class="muted">Die „Deine Bank“ ist erfunden. ${liste.length} Nachrichten – manche sind echt, die meisten nicht!</p>
+      <p class="muted">Die „Deine Bank“ ist erfunden. ${liste.length} zufällige Nachrichten – manche sind echt, die meisten nicht!</p>
     </div>`;
   actions.innerHTML = `<div class="in"><button class="primary" id="go">Los geht’s</button></div>`;
   document.getElementById("go").onclick = zeige;
