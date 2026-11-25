@@ -202,17 +202,6 @@ const szenarien = [
     ],
     fazit:"Fake: falsche Domain, unerwartete Rechnung, Anhang mit Doppelendung (.pdf.exe). Nie unerwartete Anhänge öffnen."
   },
-  /* 7 – FAKE-WHATSAPP: Familie / „neue Nummer“*/
-  {
-    typ:"sms", phishing:true, titel:"💬 WhatsApp",
-    kopf:[{l:"Absender", t:"Unbekannte Nummer +49 1523 4478120", v:true, e:"Nicht in deinen Kontakten. Das Profilbild lässt sich leicht kopieren."}],
-    koerper:[
-      {t:"Hi Mama, mein Handy ist kaputt, das ist meine neue Nummer 😊", v:true, e:"Typische Masche „Hallo Mama/Papa“. Rufe die alte, bekannte Nummer an und frage nach."},
-      {t:"Ich muss dringend eine Rechnung bezahlen, aber mein Online-Banking geht nicht. Kannst du für mich überweisen?", v:true, e:"Eine Geldbitte mit Ausrede, warum es nur über dich geht."},
-      {t:"IBAN: DE44 5001 0517 5407 3249 31, 1.850 €. Bitte heute noch!", v:true, e:"Hoher Betrag und Zeitdruck. Überweise nie, bevor du die Person selbst gesprochen hast."}
-    ],
-    fazit:"Fake: neue Nummer, Geldbitte, Druck. Immer erst über die bekannte Nummer oder persönlich nachfragen."
-  },
   /* 8 – ECHTER ANRUF: Rückruf, den DU angefordert hast*/
   {
     typ:"call", phishing:false, titel:"📞 Anruf auf dem Handy",
