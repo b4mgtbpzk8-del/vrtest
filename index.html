@@ -14,6 +14,14 @@
   --ok:#15803d; --okbg:#dcfce7; --bad:#c62828; --badbg:#fde4e4; --miss:#b45309; --missbg:#fff1d6;
   box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
+ .eyebrow{
+  display:block;
+  margin-bottom:6px;
+  color:var(--brand);
+  font-size:.75rem;
+  font-weight:750;
+  letter-spacing:.12em;
+} 
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#0e1420; --card:#18202f; --text:#eef2fb; --muted:#9aa7c0; --line:#2b3650;
@@ -28,7 +36,32 @@
 }
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  color:var(--text);
+  font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  -webkit-text-size-adjust:100%;
+
+  background:
+    radial-gradient(circle at 15% -10%, rgba(10,79,214,.09), transparent 38%),
+    radial-gradient(circle at 95% 20%, rgba(21,128,61,.05), transparent 28%),
+    var(--bg);
+}
+  :root[data-theme="dark"] body{
+  background:
+    radial-gradient(circle at 15% -10%, rgba(110,160,255,.10), transparent 38%),
+    radial-gradient(circle at 95% 20%, rgba(74,222,128,.04), transparent 28%),
+    var(--bg);
+}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) body{
+    background:
+      radial-gradient(circle at 15% -10%, rgba(110,160,255,.10), transparent 38%),
+      radial-gradient(circle at 95% 20%, rgba(74,222,128,.04), transparent 28%),
+      var(--bg);
+  }
+}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
 main{max-width:560px;margin:0 auto;padding:16px 16px 130px}
 h1{font-size:1.7rem;line-height:1.2;margin:.4em 0}
@@ -40,7 +73,23 @@ button{font:inherit;cursor:pointer;border:0;border-radius:14px;min-height:52px;p
 .topbar{display:flex;justify-content:space-between;font-weight:650;font-size:.95rem;margin-bottom:6px}
 .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:14px}
 .bar i{display:block;height:100%;background:var(--brand);transition:width .3s}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:14px;
+  box-shadow:0 1px 2px rgba(15, 23, 42, .04);
+}
+  .card.fact{
+  border-left:5px solid var(--brand);
+  background:linear-gradient(135deg, var(--card), color-mix(in srgb, var(--brand) 4%, var(--card)));
+}
+.card.fact > b{
+  display:block;
+  font-size:1.05rem;
+  margin-bottom:12px;
+}
 .typ{font-weight:700;margin-bottom:8px}
 .part{padding:10px 12px;margin:6px 0;border-radius:10px;border:2px solid transparent;background:var(--bg);word-break:break-word;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .part small{display:block;color:var(--muted);font-size:.78rem}
@@ -74,10 +123,75 @@ button{font:inherit;cursor:pointer;border:0;border-radius:14px;min-height:52px;p
 .btn-fake{background:var(--bad);color:#fff;flex:1}
 :root[data-theme="dark"] .btn-echt,:root[data-theme="dark"] .btn-fake{color:#0e1420}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn-echt,:root:not([data-theme="light"]) .btn-fake{color:#0e1420}}
-.fact .frow{display:flex;flex-direction:column;gap:2px;padding:8px 0;border-top:1px solid var(--line)}
-.fact .frow span{font-size:.8rem;color:var(--muted)}
-.fact code{font:600 1rem ui-monospace,Menlo,monospace;word-break:break-all}
+.fact .frow{
+  display:grid;
+  grid-template-columns:130px 1fr;
+  align-items:center;
+  gap:12px;
+  padding:11px 0;
+  border-top:1px solid var(--line);
+}
 
+.fact .frow span{
+  font-size:.78rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  color:var(--muted);
+}
+
+.fact code{
+  font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size:.95rem;
+  font-weight:700;
+  color:var(--text);
+}
+@media(max-width:420px){
+  .fact .frow{
+    grid-template-columns:1fr;
+    gap:2px;
+  }
+}
+.steps{
+  padding:0;
+  margin:14px 0 0;
+  list-style:none;
+}
+
+.steps li{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:11px 0;
+  border-top:1px solid var(--line);
+}
+
+.steps li:first-child{
+  border-top:0;
+  padding-top:0;
+}
+
+.steps li > span{
+  display:grid;
+  flex:0 0 28px;
+  width:28px;
+  height:28px;
+  place-items:center;
+  border-radius:50%;
+  background:var(--brand);
+  color:#fff;
+  font-size:.82rem;
+  font-weight:800;
+}
+.start-meta{
+  padding:10px 12px;
+  border-left:3px solid var(--brand);
+  background:color-mix(in srgb, var(--brand) 6%, transparent);
+  border-radius:0 8px 8px 0;
+}
+.steps strong{
+  font-weight:750;
+}  
 .card.mail{padding:0;overflow:hidden}
 .card.mail .status{margin:8px 14px 14px}
 .ol{font-family:"Segoe UI",system-ui,sans-serif;background:var(--card);color:var(--text)}
@@ -472,32 +586,95 @@ function alleStellen(z){ return z.kopf.concat(z.koerper); }
 
 /*Startseite*/
 function start(){
-  
   const fakeSzenarien = szenarien.filter(s => s.phishing === true);
   const echteSzenarien = szenarien.filter(s => s.phishing === false);
 
   const dreiFakes = mischen(fakeSzenarien).slice(0, 3);
   const zweiEchte = mischen(echteSzenarien).slice(0, 2);
-  
+
   liste = mischen([...dreiFakes, ...zweiEchte]);
-  nr = 0; punkte = 0;
+  nr = 0;
+  punkte = 0;
+
   app.innerHTML = `
-    <h1>🎣 Echt oder Fake?</h1>
+    <h1>
+      <span class="eyebrow">PHISHING-CHECK</span>
+      Echt oder Fake?
+    </h1>
+
     <p>Betrüger versuchen, an dein Geld oder deine Bankdaten zu kommen. Teste, ob du sie erkennst.</p>
+
     <div class="card fact">
-      <b>📌 Die Ausgangslage</b>
+      <b>Die Ausgangslage</b>
       <p>Du bist Kunde bei dieser Bank. Das sind ihre <b>echten</b> Daten:</p>
-      <div class="frow"><span>Bankname</span><code>Deine Bank</code></div>
-      <div class="frow"><span>Echte Domain-Adresse</span><code>@deine-bank.de</code></div>
-      <div class="frow"><span>Echte Website</span><code>www.deine-bank.de</code></div>
-      <p class="muted">Hinter dem @ muss genau <b>deine-bank.de</b> stehen. Deine Bank fragt <b>nie</b> nach PIN, Passwort oder TAN.</p>
+
+      <div class="frow">
+        <span>Bankname</span>
+        <code>Deine Bank</code>
+      </div>
+
+      <div class="frow">
+        <span>Echte Domain-Adresse</span>
+        <code>@deine-bank.de</code>
+      </div>
+
+      <div class="frow">
+        <span>Echte Website</span>
+        <code>www.deine-bank.de</code>
+      </div>
+
+      <p class="muted">
+        Hinter dem @ muss genau <b>deine-bank.de</b> stehen.
+        Deine Bank fragt <b>nie</b> nach PIN, Passwort oder TAN.
+      </p>
     </div>
-    <div class="card">
-      <b>So geht’s:</b>
-      <p>1. Lies die Nachricht.<br>2. <b>Tippe auf Stellen, die dir verdächtig vorkommen.</b> Sie leuchten orange.<br>3. Entscheide unten: <b>Echt</b> oder <b>Fake</b>.<br>4. Danach siehst du, was stimmt, und bekommst jede Stelle erklärt.</p>
-      <p class="muted">Die „Deine Bank“ ist erfunden. ${liste.length} zufällige Nachrichten – manche sind echt, die meisten nicht!</p>
-    </div>`;
-  actions.innerHTML = `<div class="in"><button class="primary" id="go">Los geht’s</button></div>`;
+
+    <div class="card howto">
+      <b>So funktioniert der Check</b>
+
+      <ol class="steps">
+        <li>
+          <span>1</span>
+          <div>
+            <strong>Nachricht lesen</strong><br>
+            Prüfe Absender, Inhalt und Links.
+          </div>
+        </li>
+        <li>
+          <span>2</span>
+          <div>
+            <strong>Verdächtige Stellen markieren</strong><br>
+            Tippe alles an, was dir auffällt.
+          </div>
+        </li>
+        <li>
+          <span>3</span>
+          <div>
+            <strong>Entscheidung treffen</strong><br>
+            Ist die Nachricht echt oder ein Fake?
+          </div>
+        </li>
+        <li>
+          <span>4</span>
+          <div>
+            <strong>Auswertung ansehen</strong><br>
+            Du erhältst Hinweise zu jeder Stelle.
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <p class="muted start-meta">
+      5 zufällige Nachrichten · ca. 3 Minuten · direktes Feedback
+    </p>
+  `;
+
+  actions.innerHTML = `
+    <div class="in">
+      <button class="primary" id="go">Phishing-Check starten</button>
+    </div>
+  `;
+
   document.getElementById("go").onclick = zeige;
 }
 
